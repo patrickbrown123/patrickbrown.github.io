@@ -21,64 +21,275 @@
 					<div id="intro">
 						<h1>Patrick Brown<br />
 						Portfolio</h1>
-						<p>Business intelligence analyst skilled in SQL, Power BI and DAX </p>
+						<p>Business intelligence analyst skilled in SQL, DAX and Power BI </p>
 						<ul class="actions">
 							<li><a href="#sql-project" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
 						</ul>
 					</div>
 
-				<!-- Header 
-					<header id="header">
-						<a href="index.html" class="logo">Projects</a>
-					</header> -->
-
-				<!-- Nav 
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">This is Massively</a></li>
-							<li><a href="generic.html">Generic Page</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav> -->
-
-
-
 				<!-- Main -->
 					<div id="main">
 
 						<!-- Featured Post -->
-							<article id="sql-project" class="post featured">
-								<header class="major">
-									<h2> Data cleaning and analysis in SQL</h2>
-									<p>In this project, I clean sales data and analyse it in SQL Server</p>
-								</header>
-								<span class="image main"><img src="images/SQL.PNG" alt="" /></span>
-								<ul class="actions special">
-									<li><a href="https://github.com/patrickbrown123/patrick-brown-portfolio/blob/main/Data_Cleaning_Project.sql" class="button primary large">View Project</a></li>
-								</ul>
-								<ul class="actions special">
-							         <li><a href="#powerbi-project" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						        </ul>
-							</article>
+	<article id="sql-project" class="post featured">
+    <header class="major">
+        <h2>Data Cleaning and Analysis in SQL</h2>
+    </header>
 
-							<article id="powerbi-project" class="post featured">
-								<header class="major">
-									<h2> Data analysis and visualisation in Power BI</h2>
-									<p>In this project, I analyse and visualise sales data using Power BI and DAX</p>
-								</header>
-								<span class="image main"><img src="images/powerbidax.PNG" alt="" /></span>
-								<ul class="actions special">
-									<li><a href="https://github.com/patrickbrown123/patrick-brown-portfolio" class="button primary large">View Project</a></li>
-								</ul>
-							</article>
+    <!-- Project Overview -->
+    <h3>Project Introduction</h3>
+    <p>
+        The purpose of this project was to analyse superstore sales data, to generate insights that could support
+        business decision making. The objectives were to identify key sales trends, understand customer
+        behaviour, evaluate product performance, and provide actionable recommendations.
+    </p> 
+    <p>
+        The dataset included transactional sales data from a retail superstore, covering order
+        details, customer demographics, product information, and regional sales. Key fields included
+        OrderID, OrderDate, ShipDate, CustomerID, CustomerName, Segment, Region, ProductID, Category, SubCategory, ProductName, Sales, Quantity and Profit.
+    </p>
 
+    <!-- SQL Methodology -->
+    <h3>SQL Methodology</h3>
+    <ol>
+    	<li><strong>Data Importing:</strong>
+        <ul>
+			<li>Connected to the superstore database and created a structured table to store raw data.</li>
+            <li>Imported raw sales data from a tab delimitted CSV using <code>BULK INSERT</code>.</li>
+            <li>Verified import success and record counts.</li>
+        </ul>
+		</li>
+		<li><strong>Data Cleaning & Preparation:</strong>
+        <ul>
+			<li>Identified and handled missing values, replacing nulls in OrderID, CustomerID and Sales with defaults.</li>
+            <li>Standardized text fields (e.g., trimmed Category, uppercased SubCategory</em>).</li>
+            <li>Corrected invalid dates (ShipDate < OrderDate) and negative Quantities.</li>
+        	<li>Flagged outliers based on extreme values for Sales or Quantity.</li>
+		</ul>
+		</li>
+		<li><strong>Data Transformation:</strong> 
+        <ul>
+            <li>Created customer segmentation logic (High/Medium/Low value) based on Sales.</li>
+			<li>Created columns MinOrderDate (first order date) and OrderRelativeMonth (number of months since first order) to the sales data.</li>
+            <li>Used a Common Table Expression (CTE): <code>MIN(OrderDate) OVER(PARTITION BY CustomerID)</code> to calculate the date of each customer’s first order.</li>
+            <li>Calculated OrderRelativeMonth as the number of months since the first order using <code>DATEDIFF(MONTH, MIN(OrderDate) OVER(PARTITION BY CustomerID), OrderDate)</code>.</li>
+            <li>Populated the sales data with these new columns by joining the CTE on to the data.</li>
+            <li>This mirrors the cohort logic later used dynamically in Power BI with DAX.</li>
+        </ul>
+		<li><strong>Exploratory Analysis:</strong>
+        <ul>
+            <li>Computed monthly and yearly sales and profit trends using SQL window functions.</li>
+            <li>Identified the top 5 products by Sales per Category.</li>
+			<li>Computed counts of unique orders, customers and products.</li>
+            <li>Aggregated Sales and Profit metrics by Region and Category.</li>
+        </ul>
+    	</li>
+    </ol>
+    <p>
+        This provided a clean dataset view ready for modelling in DAX and visualisation in Power BI, enabling
+        actionable insights into sales performance, customer segmentation, and product profitability.
+    </p>
+
+    <!-- GitHub Link -->
+    <ul class="actions special">
+        <li><a href="https://github.com/patrickbrown123/patrick-brown-portfolio/blob/main/Data_Cleaning_Project.sql" class="button primary large">View Project</a></li>
+    </ul>
+
+    <ul class="actions special">
+        <li><a href="#powerbi-project" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+    </ul>
+</article>
+
+<article id="powerbi-project" class="post featured">
+    <header class="major">
+        <h2>Data Analysis and Visualization in Power BI</h2>
+    </header>
+
+    <!--<span class="image main"><img src="images/project1pbi-1.PNG" alt="Power BI Project Screenshot" /></span>-->
+
+    <!-- Project Overview -->
+    <h3>Project Introduction</h3>
+    <p>
+        The purpose of this project was to demonstrate data modelling and analysis
+        using DAX, alongside interactive reporting in Power BI. The objective was to deliver reports that
+        highlight key metrics such as sales performance, profitability, customer behaviour and retention. 
+		This project uses the cleaned sales data from the SQL project.
+    </p>
+
+    <!-- DAX in Power BI Methodology -->
+	<h3>DAX Methodology</h3>
+    <ol>
+    	<li><strong> Data Modelling & Analysis:</strong>
+        <ul>
+			<li>Created calculated measures for key business metrics: Total Sales, Total Profit, Profit Margin and Unique Customers.</li>
+			<li>Generated a continuous date table covering the full sales period, with columns for Year, Month, Quarter and Day. This was created 
+				to enable time based analysis and the use of DAX time intelligence functions.</li>
+			<li>Connected the date from the date table to OrderDate from the sales data, via a one to many relationship in Model view.</li>	
+            <li>Designed time intelligence measures for year over year growth comparisons.</li>
+            <li>Implemented running totals for sales and profit to track cumulative performance over time.</li>
+			<li>Grouped customers by their first purchase period to monitor behaviour over time.</li>
+			<li>Developed a customer retention measure to calculate the proportion of customers returning in subsequent periods.</li>
+        </ul>
+		</li>
+	</ol>
+
+	 <!-- Key DAX Measures -->
+    <h3>DAX Measures</h3>
+	<p> To transform and analyse the data in Power BI, the following DAX measures were used:</p>
+	<ol>
+    	<li><strong> Sales & Profit Measures</strong>
+        <ul>
+			<pre>
+Total Sales = SUM(superstoresales_clean[Sales])
+Total Profit = SUM(superstoresales_clean[Profit])
+Profit Margin = DIVIDE([Total Profit], [Total Sales], 0)
+Unique Customers = DISTINCTCOUNT(superstoresales_clean[CustomerID]) </pre>
+		</ul>
+		<li><strong> Year over Year Growth</strong>
+        <ul>
+			<pre>
+Total Sales LY = CALCULATE([Total Sales], SAMEPERIODLASTYEAR(DateTable[Date]))
+Total Sales YoY % Growth = DIVIDE([Total Sales] – [Total Sales LY], [Total Sales LY], 0)
+
+Total Profit LY = CALCULATE([Total Profit], SAMEPERIODLASTYEAR(DateTable[Date]))
+Total Profit YoY % Growth = DIVIDE([Total Profit] - [Total Profit LY], [Total Profit LY], 0) </pre>
+		</ul>
+		<li><strong> Running Totals</strong>
+        <ul>
+			<pre>
+Running Total Sales = TOTALYTD([Total Sales], DateTable[Date])
+Running Total Profit = TOTALYTD([Total Profit], DateTable[Date]) </pre>
+		</ul>
+		<li><strong> Cohort Analysis & Retention </strong>
+        <ul>
+			<pre>
+MinOrderDate(DAXColumn) = 
+CALCULATE(
+    MIN(superstoresales_clean[OrderDate]),
+    ALLEXCEPT(superstoresales_clean, superstoresales_clean[CustomerID])
+)
+
+Cohort = FORMAT(superstoresales_clean[MinOrderDate(DAXColumn)], "YYYY-MM")
+
+CohortRelativeMonth(DAXColumn) = 
+DATEDIFF(
+    STARTOFMONTH(superstoresales_clean[MinOrderDate(DAXColumn)]),
+    STARTOFMONTH(superstoresales_clean[OrderDate]),
+    MONTH
+)
+
+Retention % = 
+DIVIDE(
+    DISTINCTCOUNT(superstoresales_clean[CustomerID]),
+    CALCULATE(
+        DISTINCTCOUNT(superstoresales_clean[CustomerID]), 
+        FILTER(
+            ALL(superstoresales_clean), 
+            superstoresales_clean[Cohort] = MIN(superstoresales_clean[Cohort]) 
+	    && superstoresales_clean[CohortRelativeMonth(DAXColumn)] = 0
+        )
+    )
+)</pre>
+		</ul>
+	</ol>
+
+
+	<h3>Power BI Methodology</h3>
+    <ol>
+		<li><strong> Visualisation and Insights:</strong>
+        <ul>
+			<li>Built interactive reports with slicers for Year, Region, CustomerSegment (High, Medium or Low value), Segment (Consumer, Corporate or Home Office) and Category.</li>
+            <li>Visualised sales trends, top performing products, customer segments and retention metrics and monitored underperforming areas.</li>
+            <li>Used matrices and cross analysis charts to compare sales and profit by region and category.</li>
+			<li>Designed visual storytelling to support business recommendations for inventory management, marketing focus, and regional strategy.</li>
+		</ul>
+		</li>
+    <ol>
+
+
+   
+
+    <!-- Results -->
+    <h3>Results</h3>
+	<span class="image main"><img src="images/project1pbi-1.PNG" alt="Power BI Project Screenshot" /></span>
+	<span class="image main"><img src="images/project1pbi-2.PNG" alt="Power BI Project Screenshot" /></span>
+	<span class="image main"><img src="images/project1pbi-3.PNG" alt="Power BI Project Screenshot" /></span>
+	<ol>
+    	<li><strong> Total Sales, Total Profit and Profit Margin (KPI cards)</strong>
+		<ul> 
+			<li>Total Sales reached $2.3M for the reporting period.</li>
+            <li>Profit Margin is 13%, indicating profitability is positive, but with room for efficiency improvements.</li>
+            <li>Profit Margin varies by product and Region, showing where costs may be higher.</li>
+		</ul>
+		<li><strong> Monthly Sales Trend (Line Chart)</strong>
+		<ul> 
+			<li>Individual months vary significantly, with some sharp spikes that likely reflect promotional campaigns or bulk orders.</li>
+            <li>Slower months (often mid year) highlight potential opportunities for targeted marketing to increase revenue flow.</li>
+        </ul>
+		<li><strong> Running Total Sales (Line Chart)</strong>
+		<ul> 
+			<li>Sales demonstrate a steady cumulative increase across the reporting period.</li>
+            <li>The slope of the curve is steeper in Q4, indicating stronger end of year demand.</li>
+            <li>Growth is consistent year over year, with no major drop offs, suggesting stable revenue momentum.</li>
+		</ul>
+		<li><strong> Category & SubCategory Profitability (Bar Chart)</strong>
+		<ul> 
+			<li>Technology products deliver the highest Profit Margin (17%), making them the most profitable category overall.</li>
+            <li>Within Furniture, Tables stand out with negative margins, dragging down the category’s performance despite strong revenue volumes.</li>
+            <li>Office Supplies shows a mixed picture: some sub categories (e.g., Binders, Paper) are profitable, while others (e.g., Supplies) operate at very low margins.</li>
+		</ul>
+		<li><strong> Sales by Region (Bar Chart)</strong>
+		<ul> 
+			<li>The West region consistently outperforms others, contributing 32% of Total Sales.</li>
+            <li>The Southern region shows the weakest performance, accounting for under 20% of Total Sales.</li>
+            <li>Regional variations suggest opportunities for targeted marketing or operational focus in underperforming regions.</li>
+		</ul>
+		<li><strong> Top 5 Products by Sales (Bar Chart)</strong>
+		<ul> 
+			<li>Revenue is highly concentrated, with the top 5 products contributing nearly 30% of Total Sales.</li>
+            <li>The highest selling product (Canon image CLASS 2200 Advanced Copier) outperforms the fifth ranked product (GBC DocuBind TL300 Electric Binding) by more than 3, highlighting reliance on a small product set.</li>
+            <li>This concentration indicates opportunity to diversify sales across more products to reduce dependency risk.</li>
+		</ul>
+		<li><strong> Sales by CustomerSegment (Bar Chart)</strong>
+		<ul> 
+			<li>Only 15% of customers are classified as “High Value”, but they contribute 40% of Total Sales.</li>
+            <li>44% of customers are classified as “Low Value”, offering upsell opportunities.</li>
+		</ul>
+		<li><strong> Sales by Segment (Bar Chart)</strong>
+		<ul> 
+			<li>The Consumer segment consistently generates the largest share of Total Sales, accounting for over half of total revenue.</li>
+            <li>The Home Office segment contributes the least share of Total Sales and should be targeted with tailored strategies. </li>
+		</ul>
+		<li><strong> Cohort Retention % (Matrix)</strong>
+		<ul> 
+			<li>Early months after the first purchase show the steepest drop, highlighting the challenge of converting new customers into repeat buyers.</li>
+            <li>Some of the more recent cohorts maintain higher engagement, suggesting the value of strong initial acquisition campaigns.</li>
+            <li>Focus on improving Month 1–3 retention, through targeted follow ups and promotions, which could substantially increase long term customer value.</li>
+		</ul>
+			
+	</li>
+	</ol>
+    
+	
+
+	<!-- Project Conclusion -->
+	<h3>Conclusion</h3>
+	<p> 
+		The Power BI reports revealed that Total Sales reached $2.3M, with a 13% Profit Margin, across the reporting period, showing steady growth and strong Q4 performance. 
+	    Profitability is driven by Technology, but reliance on a few products, weaker regions, and low early customer retention present risks.
+		To support sustainable growth, the business should focus on targeting underperforming regions and segments 
+		and strengthening early customer retention.
 		
+		This project demonstrates my ability to combine SQL, DAX, and Power BI to deliver a complete BI solution.
+    </p>
+
+    <!-- GitHub Link -->
+    <ul class="actions special">
+        <li><a href="https://github.com/patrickbrown123/patrick-brown-portfolio" class="button primary large">View Project</a></li>
+    </ul>
+</article>
+
+
 
 						
 					</div>
