@@ -156,13 +156,16 @@ h2 {
 h3 {
     text-transform: none; /* keeps the capitalization as in HTML */
 }
-/* Mobile/Desktop visibility */
-.mobile-only { display: none; }
-.desktop-only { display: block; }
+/* By default, links are clickable */
+.project-link {
+  display: block;
+}
 
-@media (max-width: 768px) {
-  .mobile-only { display: block; }
-  .desktop-only { display: none; }
+/* Disable clicking on desktop */
+@media (min-width: 769px) {
+  .project-link {
+    pointer-events: none; /* disables click */
+  }
 }
 			
 /* Projects Gallery */
@@ -311,28 +314,25 @@ ON s.CustomerID = c.CustomerID AND s.OrderDate = c.OrderDate;
               <div class="projects-container">
   <!-- Figure 1 -->
   <figure class="project">
-    <a href="images/project1pbi-1.png" class="mobile-only" data-pswp-width="1200" data-pswp-height="800">
+    <a href="images/project1pbi-1.png" data-pswp-width="1200" data-pswp-height="800" class="project-link">
       <img src="images/project1pbi-1.png" alt="Power BI KPI Cards">
     </a>
-    <img src="images/project1pbi-1.png" class="desktop-only" alt="Power BI KPI Cards">
     <figcaption><strong>Figure 1:</strong> KPI Cards – Total Sales, Profit, etc.</figcaption>
   </figure>
 
   <!-- Figure 2 -->
   <figure class="project">
-    <a href="images/project1pbi-2.png" class="mobile-only" data-pswp-width="1200" data-pswp-height="800">
+    <a href="images/project1pbi-2.png" data-pswp-width="1200" data-pswp-height="800" class="project-link">
       <img src="images/project1pbi-2.png" alt="Sales breakdown by Category">
     </a>
-    <img src="images/project1pbi-2.png" class="desktop-only" alt="Sales breakdown by Category">
     <figcaption><strong>Figure 2:</strong> Sales by Category</figcaption>
   </figure>
 
   <!-- Figure 3 -->
   <figure class="project">
-    <a href="images/project1pbi-3.png" class="mobile-only" data-pswp-width="1200" data-pswp-height="1600">
+    <a href="images/project1pbi-3.png" data-pswp-width="1200" data-pswp-height="1600" class="project-link">
       <img src="images/project1pbi-3.png" alt="Customer Retention">
     </a>
-    <img src="images/project1pbi-3.png" class="desktop-only" alt="Customer Retention">
     <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
   </figure>
 </div>
@@ -479,6 +479,7 @@ if (window.innerWidth <= 768) {
 </script>
 	</body>
 </html>
+
 
 
 
