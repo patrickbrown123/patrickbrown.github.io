@@ -309,21 +309,30 @@ ON s.CustomerID = c.CustomerID AND s.OrderDate = c.OrderDate;
                 <p><strong>Note:</strong> Images can now be zoomed on mobile using pinch gestures.</p>
 
               <div class="projects-container">
-  <div class="project">
-    <a href="images/project1pbi-1.png" data-pswp-width="1200" data-pswp-height="800" class="mobile-only">
-      <img src="images/project1pbi-1.png" alt="Power BI KPI Cards">
-    </a>
-    <img src="images/project1pbi-1.png" alt="Power BI KPI Cards" class="desktop-only">
-    <figcaption><strong>Figure 1:</strong> KPI Cards – Total Sales, Profit, etc.</figcaption>
-  </div>
+  <!-- Figure 1 -->
+  <a href="images/project1pbi-1.png" class="mobile-only"
+     data-pswp-width="1200" data-pswp-height="800">
+    <img src="images/project1pbi-1.png" alt="Power BI KPI Cards">
+  </a>
+  <img src="images/project1pbi-1.png" class="desktop-only" alt="Power BI KPI Cards">
+  <figcaption><strong>Figure 1:</strong> KPI Cards – Total Sales, Profit, etc.</figcaption>
 
-  <div class="project">
-    <a href="images/project1pbi-2.png" data-pswp-width="1200" data-pswp-height="800" class="mobile-only">
-      <img src="images/project1pbi-2.png" alt="Sales breakdown by Category">
-    </a>
-    <img src="images/project1pbi-2.png" alt="Sales breakdown by Category" class="desktop-only">
-    <figcaption><strong>Figure 2:</strong> Sales by Category</figcaption>
-  </div>
+  <!-- Figure 2 -->
+  <a href="images/project1pbi-2.png" class="mobile-only"
+     data-pswp-width="1200" data-pswp-height="800">
+    <img src="images/project1pbi-2.png" alt="Sales breakdown by Category">
+  </a>
+  <img src="images/project1pbi-2.png" class="desktop-only" alt="Sales breakdown by Category">
+  <figcaption><strong>Figure 2:</strong> Sales by Category</figcaption>
+
+  <!-- Figure 3 -->
+  <a href="images/project1pbi-3.png" class="mobile-only"
+     data-pswp-width="1200" data-pswp-height="1600">
+    <img src="images/project1pbi-3.png" alt="Customer Retention">
+  </a>
+  <img src="images/project1pbi-3.png" class="desktop-only" alt="Customer Retention">
+  <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
+</div>
 
   <div class="project">
     <a href="images/project1pbi-3.png" data-pswp-width="1200" data-pswp-height="1600" class="mobile-only">
@@ -465,27 +474,27 @@ FILTER(ALL(superstoresales_clean), superstoresales_clean[Cohort] = MIN(superstor
 <script type="module">
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
 
-function initLightbox() {
-  // Remove existing lightbox if any
-  if (window.lightboxInstance) window.lightboxInstance.destroy();
+const lightbox = new PhotoSwipeLightbox({
+  gallery: '.projects-container',
+  children: '.mobile-only', // only clickable on mobile
+  pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
+});
 
-  if (window.innerWidth <= 768) { // Mobile only
-    const lightbox = new PhotoSwipeLightbox({
-      gallery: '.projects-container',
-      children: '.mobile-only', // only mobile <a>
-      pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
-    });
-    lightbox.init();
-    window.lightboxInstance = lightbox;
-  }
+// Initialize only if mobile
+if (window.innerWidth <= 768) {
+  lightbox.init();
 }
 
-// Initialize on load & resize
-window.addEventListener('load', initLightbox);
-window.addEventListener('resize', initLightbox);
+// Optional: prevent multiple instances on resize
+window.addEventListener('resize', () => {
+  if (window.innerWidth <= 768 && !lightbox.isOpen) {
+    lightbox.init();
+  }
+});
 </script>
 	</body>
 </html>
+
 
 
 
