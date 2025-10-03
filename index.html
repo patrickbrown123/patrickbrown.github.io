@@ -185,13 +185,14 @@ h3 {
   display: block;
   margin: 0 auto;
 }
-/* Mobile view */
-@media (max-width: 768px) {
-  .mobile-only { display: block; }
-  .desktop-only { display: none; }
+/* Optional hover scale on desktop */
+@media (min-width: 769px) {
+  .projects-container .project img:hover {
+    transform: scale(1.02);
+  }
 }
-.projects-container img:hover { transform: scale(1.02);}
-.projects-container figcaption { margin-top:8px; font-size:0.9rem; color:#555;}
+/*.projects-container img:hover { transform: scale(1.02);}
+.projects-container figcaption { margin-top:8px; font-size:0.9rem; color:#555;}*/
     /*@media (max-width:768px) {
         .projects-container { flex-direction:column; gap:15px; padding:0 10px;}
         .projects-container a { flex:1 1 100%; max-width:100%;}
@@ -464,19 +465,33 @@ FILTER(ALL(superstoresales_clean), superstoresales_clean[Cohort] = MIN(superstor
     </script>
 
     <!-- PhotoSwipe v5 -->
- <script type="module">
+<script type="module">
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
-if (window.innerWidth <= 768) {
-  const lightbox = new PhotoSwipeLightbox({
-    gallery: '.projects-container',
-    children: 'a.mobile-only',
-    pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
-  });
-  lightbox.init();
+
+function initLightbox() {
+  // Remove existing lightbox if any
+  if (window.lightboxInstance) {
+    window.lightboxInstance.destroy();
+  }
+
+  if (window.innerWidth <= 768) { // Mobile only
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '.projects-container',
+      children: '.project img', // attach to images, not <a>
+      pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
+    });
+    lightbox.init();
+    window.lightboxInstance = lightbox;
+  }
 }
+
+// Initialize on load & resize
+window.addEventListener('load', initLightbox);
+window.addEventListener('resize', initLightbox);
 </script>
 	</body>
 </html>
+
 
 
 
