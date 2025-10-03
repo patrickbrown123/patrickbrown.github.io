@@ -171,74 +171,66 @@ h3 {
 /* Projects Gallery */
 .projects-container {
   display: flex;
-  flex-direction: column; /* vertical stack */
-  gap: 20px;              /* spacing between images */
-  align-items: center; /* center images horizontally */
+  flex-direction: column;      /* stack figures vertically */
+  gap: 20px;                   /* spacing between figures */
+  align-items: center;         /* center figures horizontally */
   width: 100%;
-  max-width: 900px; /* same width as your main text */
+  max-width: 900px;            /* match main content width */
   margin: 0 auto;
-  padding: 0 15px;        /* optional padding on sides */
+  padding: 0 15px;
 }
 
-.projects-container a {
+/* Individual figure wrapper */
+.figure-wrapper {
   width: 100%;
-  max-width: 1200px;       /* constrain large images on desktop */
-  text-align: center;
-  display: block;
+  max-width: 900px;
+  margin: 0 auto 20px;
 }
 
-.projects-container a {
-    outline: none;       /* removes dotted border */
-    border: none;        /* just in case */
-    text-decoration: none; /* removes underline if any */
+/* Description above figure */
+.figure-description {
+  text-align: left;
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  line-height: 1.5;
 }
+
+/* Figure element */
+.projects-container figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;        /* center caption and image */
+  margin: 0;
+}
+
+/* Images inside figure */
 .projects-container img {
   width: 100%;
   height: auto;
   border-radius: 8px;
+  border: 2px solid #ccc;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  box-sizing: border-box;
   display: block;
   margin: 0 auto;
-  border: 2px solid #ccc;
-  box-sizing: border-box;   /* ensures border doesn’t break layout */
-}
-/*.projects-container .project {
-    margin: 4px 0;           4px top & bottom around the figure 
-}*/
-
-.projects-container figcaption {
-    margin-top: 4px;        /* space between image and caption */
-    font-size: 0.9rem;
-    color: #555;
-	text-align: center;
-}
-.figure-wrapper {
-    max-width: 900px;
-	width: 100%;
-    margin: 0 auto 20px auto;  /* centers the wrapper but keeps text left-aligned */
+  transition: transform 0.3s;
 }
 
-.figure-description {
-    text-align: left;
-    margin: 0 0 8px 0;          /* consistent spacing above figure */
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.projects-container figure {
-    display: flex;
-    flex-direction: column;
-    align-items: center;        /* centers figure & caption */
-    margin: 0;                  /* remove extra spacing */
-}
-/* Optional hover scale on desktop */
+/* Hover scale effect on desktop */
 @media (min-width: 769px) {
-  .projects-container .project img:hover {
+  .projects-container img:hover {
     transform: scale(1.02);
   }
 }
-.projects-container img:hover { transform: scale(1.02);}
+
+/* Captions */
+.projects-container figcaption {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+}
+
     /*@media (max-width:768px) {
         .projects-container { flex-direction:column; gap:15px; padding:0 10px;}
         .projects-container a { flex:1 1 100%; max-width:100%;}
@@ -537,6 +529,7 @@ if (window.innerWidth <= 768) { // mobile only
 </script>
 	</body>
 </html>
+
 
 
 
