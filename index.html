@@ -229,11 +229,11 @@ html {
   display: block;
 }
 
-@media (min-width: 769px) {
+/*@media (min-width: 769px) {
   .project-link {
     pointer-events: none; /* disables click on desktop */
   }
-}
+}*/
 </style>
 </head>
 <body class="is-preload">
@@ -513,7 +513,7 @@ FILTER(ALL(superstoresales_clean), superstoresales_clean[Cohort] = MIN(superstor
 <script type="module">
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
 
-if (window.innerWidth <= 768) { // mobile only
+/*if (window.innerWidth <= 768) { // mobile only*/
   const lightbox = new PhotoSwipeLightbox({
     gallery: '.projects-container',
     children: 'a.project-link', // attach to your <a> elements
@@ -524,6 +524,7 @@ if (window.innerWidth <= 768) { // mobile only
 </script>
 	</body>
 </html>
+
 
 
 
