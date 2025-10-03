@@ -17,6 +17,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-dax.min.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox-plus-jquery.min.js"></script>
 		<style>
 #navbar {
     position: fixed;
@@ -154,6 +156,46 @@ h2 {
 h3 {
     text-transform: none; /* keeps the capitalization as in HTML */
 }
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.projects-container a {
+  flex: 1 1 300px; /* minimum width on mobile */
+  max-width: 600px;
+  text-align: center; /* centers captions */
+  display: block;
+}
+
+.projects-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  display: block;
+  margin: 0 auto;
+}
+
+.projects-container img:hover {
+  transform: scale(1.02);
+}
+
+.projects-container figcaption {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .projects-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+}			
 </style>
 </head>
 <body class="is-preload">
@@ -256,32 +298,28 @@ ON s.CustomerID = c.CustomerID AND s.OrderDate = c.OrderDate;
 
 <h3 id="visuals">Report Visuals</h3>
 
-<p><strong>Note:</strong> The visuals shown below are static screenshots from Power BI Desktop. They are not interactive and do not respond to filters or slicers.</p>
+<p><strong>Note:</strong> The visuals shown below are screenshots from Power BI Desktop. They are not interactive but can be zoomed on mobile for readability.</p>
 
 <!-- Metric explanations -->
-    <p><strong>YTD (Year to Date):</strong> Total accumulated from the start of the year to the selected date. <br> 
-    <strong>YoY (Year over Year):</strong> Comparison of the same period in the current year versus the previous year.</p>
+<p><strong>YTD (Year to Date):</strong> Total accumulated from the start of the year to the selected date.<br>
+<strong>YoY (Year over Year):</strong> Comparison of the same period in the current year versus the previous year.</p>
 
-<!-- Figure 1 -->
-<p><strong>Figure 1</strong> shows a high level overview of Total Sales, Total Profit, Profit Margin, Unique Customers and YoY growth.</p>
-<figure class="image main">
-    <img src="images/project1pbi-1.png" alt="Power BI KPI Cards showing Total Sales, Total Profit and Profit Margin and YoY growth." />
-    <figcaption><strong>Figure 1:</strong> KPI Cards and Overall Trends – Total Sales, Total Profit, Profit Margin, Unique Customers and YoY Growth</figcaption>
-</figure>
+<div class="projects-container">
+  <a href="images/project1pbi-1.png" data-lightbox="project1" data-title="Figure 1: KPI Cards and Overall Trends – Total Sales, Total Profit, Profit Margin, Unique Customers and YoY Growth">
+    <img src="images/project1pbi-1.png" alt="Power BI KPI Cards showing Total Sales, Total Profit, Profit Margin and YoY growth">
+    <figcaption><strong>Figure 1:</strong> KPI Cards – Total Sales, Total Profit, Profit Margin, Unique Customers, YoY Growth</figcaption>
+  </a>
 
-<!-- Figure 2 -->
-<p><strong>Figure 2</strong> shows Total Sales by Category, with Subcategory accessible via drill down, as well as by Region, Product, Customer Segment and Segment, highlighting trends and key areas of focus.</p>
-<figure class="image main">
-    <img src="images/project1pbi-2.png" alt="Power BI visuals showing sales breakdown by Category, Subcategory, Region, Product, Customer Segment and Segment." />
-    <figcaption><strong>Figure 2:</strong> Total Sales by Category (Subcategory available via drill down), Region, Product, Customer Segment and Segment.</figcaption>
-</figure>
+  <a href="images/project1pbi-2.png" data-lightbox="project2" data-title="Figure 2: Total Sales by Category, Subcategory, Region, Product, Customer Segment and Segment">
+    <img src="images/project1pbi-2.png" alt="Power BI visuals showing sales breakdown by Category, Subcategory, Region, Product, Customer Segment and Segment">
+    <figcaption><strong>Figure 2:</strong> Total Sales by Category, Subcategory, Region, Product, Customer Segment</figcaption>
+  </a>
 
-<!-- Figure 3 -->
-<p><strong>Figure 3</strong> shows customer retention over time, showing drop offs and trends across customer cohorts.</p>
-<figure class="image main">
-    <img src="images/project1pbi-3.png" alt="Power BI retention matrix showing customer drop offs over time across segments." />
+  <a href="images/project1pbi-3.png" data-lightbox="project3" data-title="Figure 3: Customer Retention by Cohort">
+    <img src="images/project1pbi-3.png" alt="Power BI retention matrix showing customer drop offs over time across segments">
     <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
-</figure>
+  </a>
+</div>
 
   <!-- DAX / Analysis Methodology -->
   <h3 id="methodology">Methodology</h3>
@@ -427,3 +465,4 @@ FILTER(ALL(superstoresales_clean), superstoresales_clean[Cohort] = MIN(superstor
   </script>
 	</body>
 </html>
+
