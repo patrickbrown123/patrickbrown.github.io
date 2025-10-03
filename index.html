@@ -200,8 +200,14 @@ h3 {
   border: 2px solid #ccc;
   box-sizing: border-box;   /* ensures border doesn’t break layout */
 }
-.projects-container {
-    margin-top: 4px; /* less space from previous text */
+.projects-container .project {
+    margin: 4px 0;          /* 4px top & bottom around the figure */
+}
+
+.projects-container figcaption {
+    margin-top: 4px;        /* space between image and caption */
+    font-size: 0.9rem;
+    color: #555;
 }
 /* Optional hover scale on desktop */
 @media (min-width: 769px) {
@@ -210,7 +216,6 @@ h3 {
   }
 }
 .projects-container img:hover { transform: scale(1.02);}
-.projects-container figcaption { margin-top:8px; font-size:0.9rem; color:#555;}
     /*@media (max-width:768px) {
         .projects-container { flex-direction:column; gap:15px; padding:0 10px;}
         .projects-container a { flex:1 1 100%; max-width:100%;}
@@ -218,11 +223,7 @@ h3 {
     }*/
 
     html { scroll-behavior:smooth; scroll-padding-top:70px; }
-/*.projects-container .project img {
-    border: 2px solid #ccc;   uniform border all around 
-    border-radius: 8px;        optional: match your style 
-    box-sizing: border-box;   /* ensures border doesn't increase image size
-}*/		
+	
 </style>
 </head>
 <body class="is-preload">
@@ -499,6 +500,7 @@ if (window.innerWidth <= 768) { // mobile only
 </script>
 	</body>
 </html>
+
 
 
 
