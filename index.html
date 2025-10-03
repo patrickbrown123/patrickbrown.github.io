@@ -156,6 +156,10 @@ h2 {
 h3 {
     text-transform: none; /* keeps the capitalization as in HTML */
 }
+/* Show/hide for mobile and desktop */
+.mobile-only { display: none; }
+.desktop-only { display: block; }
+			
 /* Projects Gallery */
 .projects-container {
   display: flex;
@@ -180,6 +184,11 @@ h3 {
   transition: transform 0.3s;
   display: block;
   margin: 0 auto;
+}
+/* Mobile view */
+@media (max-width: 768px) {
+  .mobile-only { display: block; }
+  .desktop-only { display: none; }
 }
 .projects-container img:hover { transform: scale(1.02);}
 .projects-container figcaption { margin-top:8px; font-size:0.9rem; color:#555;}
@@ -293,20 +302,39 @@ ON s.CustomerID = c.CustomerID AND s.OrderDate = c.OrderDate;
 <h3 id="visuals">Report Visuals</h3>
                 <p><strong>Note:</strong> Images can now be zoomed on mobile using pinch gestures.</p>
 
-                <div class="projects-container">
-                    <a href="images/project1pbi-1.png" data-pswp-width="1200" data-pswp-height="800">
-                        <img src="images/project1pbi-1.png" alt="Power BI KPI Cards">
-                        <figcaption><strong>Figure 1:</strong> KPI Cards</figcaption>
-                    </a>
-                    <a href="images/project1pbi-2.png" data-pswp-width="1200" data-pswp-height="800">
-                        <img src="images/project1pbi-2.png" alt="Sales breakdown by Category">
-                        <figcaption><strong>Figure 2:</strong> Sales by Category</figcaption>
-                    </a>
-                    <a href="images/project1pbi-3.png" data-pswp-width="1200" data-pswp-height="1600">
-                        <img src="images/project1pbi-3.png" alt="Customer Retention">
-                        <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
-                    </a>
-                </div>
+               <div class="projects-container">
+
+  <!-- Image 1 -->
+  <div class="desktop-only">
+      <img src="images/project1pbi-1.png" alt="Power BI KPI Cards">
+      <figcaption><strong>Figure 1:</strong> KPI Cards</figcaption>
+  </div>
+  <a href="images/project1pbi-1.png" data-pswp-width="1200" data-pswp-height="800" class="mobile-only">
+      <img src="images/project1pbi-1.png" alt="Power BI KPI Cards">
+      <figcaption><strong>Figure 1:</strong> KPI Cards</figcaption>
+  </a>
+
+  <!-- Image 2 -->
+  <div class="desktop-only">
+      <img src="images/project1pbi-2.png" alt="Sales breakdown by Category">
+      <figcaption><strong>Figure 2:</strong> Sales by Category</figcaption>
+  </div>
+  <a href="images/project1pbi-2.png" data-pswp-width="1200" data-pswp-height="800" class="mobile-only">
+      <img src="images/project1pbi-2.png" alt="Sales breakdown by Category">
+      <figcaption><strong>Figure 2:</strong> Sales by Category</figcaption>
+  </a>
+
+  <!-- Image 3 -->
+  <div class="desktop-only">
+      <img src="images/project1pbi-3.png" alt="Customer Retention">
+      <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
+  </div>
+  <a href="images/project1pbi-3.png" data-pswp-width="1200" data-pswp-height="1600" class="mobile-only">
+      <img src="images/project1pbi-3.png" alt="Customer Retention">
+      <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
+  </a>
+
+</div>
 
   <!-- DAX / Analysis Methodology -->
   <h3 id="methodology">Methodology</h3>
@@ -438,16 +466,18 @@ FILTER(ALL(superstoresales_clean), superstoresales_clean[Cohort] = MIN(superstor
     <!-- PhotoSwipe v5 -->
  <script type="module">
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
-
+if (window.innerWidth <= 768) {
   const lightbox = new PhotoSwipeLightbox({
     gallery: '.projects-container',
-    children: 'a',
+    children: 'a.mobile-only',
     pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
   });
   lightbox.init();
+}
 </script>
 	</body>
 </html>
+
 
 
 
