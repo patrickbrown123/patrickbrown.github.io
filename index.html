@@ -156,63 +156,38 @@ h2 {
 h3 {
     text-transform: none; /* keeps the capitalization as in HTML */
 }
-.projects-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
+/* Projects Gallery */
+    .projects-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    .projects-container a {
+        flex: 1 1 300px; 
+        max-width: 600px;
+        text-align: center;
+        display: block;
+        cursor: zoom-in;
+    }
+    .projects-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+        display: block;
+        margin: 0 auto;
+    }
+    .projects-container img:hover { transform: scale(1.02);}
+    .projects-container figcaption { margin-top:8px; font-size:0.9rem; color:#555;}
+    @media (max-width:768px) {
+        .projects-container { flex-direction:column; gap:15px; padding:0 10px;}
+        .projects-container a { flex:1 1 100%; max-width:100%;}
+        .projects-container img { width:100%; height:auto;}
+    }
 
-.projects-container a {
-  flex: 1 1 300px; 
-  max-width: 600px;
-  text-align: center; 
-  display: block;
-  cursor: zoom-in; /* indicates click-to-zoom */
-}
-
-.projects-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-  display: block;
-  margin: 0 auto;
-}
-
-.projects-container img:hover {
-  transform: scale(1.02);
-}
-
-.projects-container figcaption {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-/* Mobile adjustments: full width and padding */
-@media (max-width: 768px) {
-  .projects-container {
-    flex-direction: column;
-    gap: 15px;
-    padding: 0 10px;
-  }
-
-  .projects-container a {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
-
-  .projects-container img {
-    width: 100%;
-    height: auto;
-  }
-}
-.lb-image {
-    touch-action: pinch-zoom; /* allows pinch-to-zoom */
-    -ms-touch-action: pinch-zoom; /* for older Microsoft browsers */
-}
+    html { scroll-behavior:smooth; scroll-padding-top:70px; }
 </style>
 </head>
 <body class="is-preload">
@@ -314,35 +289,22 @@ ON s.CustomerID = c.CustomerID AND s.OrderDate = c.OrderDate;
 </ul>
 
 <h3 id="visuals">Report Visuals</h3>
+                <p><strong>Note:</strong> Images can now be zoomed on mobile using pinch gestures.</p>
 
-<p><strong>Note:</strong> The visuals shown below are screenshots from Power BI Desktop. They are not interactive but can be zoomed on mobile for readability.</p>
-
-<!-- Metric explanations -->
-<p><strong>YTD (Year to Date):</strong> Total accumulated from the start of the year to the selected date.<br>
-<strong>YoY (Year over Year):</strong> Comparison of the same period in the current year versus the previous year.</p>
-
-<div class="projects-container">
-  <a href="images/project1pbi-1.png" 
-     data-pswp-width="1200" 
-     data-pswp-height="800">
-    <img src="images/project1pbi-1.png" alt="Power BI KPI Cards showing Total Sales, Total Profit, Profit Margin and YoY growth">
-    <figcaption><strong>Figure 1:</strong> KPI Cards – Total Sales, Total Profit, Profit Margin, Unique Customers, YoY Growth</figcaption>
-  </a>
-
-  <a href="images/project1pbi-2.png" 
-     data-pswp-width="1200" 
-     data-pswp-height="800">
-    <img src="images/project1pbi-2.png" alt="Power BI visuals showing sales breakdown by Category, Subcategory, Region, Product, Customer Segment and Segment">
-    <figcaption><strong>Figure 2:</strong> Total Sales by Category, Subcategory, Region, Product, Customer Segment</figcaption>
-  </a>
-
-  <a href="images/project1pbi-3.png" 
-     data-pswp-width="1200" 
-     data-pswp-height="800">
-    <img src="images/project1pbi-3.png" alt="Power BI retention matrix showing customer drop offs over time across segments">
-    <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
-  </a>
-</div>
+                <div class="projects-container">
+                    <a href="images/project1pbi-1.png" data-pswp-width="1200" data-pswp-height="800">
+                        <img src="images/project1pbi-1.png" alt="Power BI KPI Cards">
+                        <figcaption><strong>Figure 1:</strong> KPI Cards</figcaption>
+                    </a>
+                    <a href="images/project1pbi-2.png" data-pswp-width="1200" data-pswp-height="800">
+                        <img src="images/project1pbi-2.png" alt="Sales breakdown by Category">
+                        <figcaption><strong>Figure 2:</strong> Sales by Category</figcaption>
+                    </a>
+                    <a href="images/project1pbi-3.png" data-pswp-width="1200" data-pswp-height="1600">
+                        <img src="images/project1pbi-3.png" alt="Customer Retention">
+                        <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
+                    </a>
+                </div>
 
   <!-- DAX / Analysis Methodology -->
   <h3 id="methodology">Methodology</h3>
@@ -441,64 +403,51 @@ FILTER(ALL(superstoresales_clean), superstoresales_clean[Cohort] = MIN(superstor
 			<script src="assets/js/main.js"></script>
   <script>
     $(document).ready(function() {
-      var navHeight = $('#navbar').outerHeight(); // navbar height
+        var navHeight = $('#navbar').outerHeight();
 
-      // Smooth scroll for nav links
-      $('#navbar ul li a').on('click', function(e) {
-        e.preventDefault();
-        var target = $($(this).attr('href'));
-        if(target.length) {
-          $('html, body').animate({
-            scrollTop: target.offset().top - navHeight
-          }, 600);
-        }
-      });
-
-      // Smooth scroll for arrow
-      $('.scrolly').on('click', function(e) {
-        e.preventDefault();
-        var target = $($(this).attr('href'));
-        if(target.length) {
-          $('html, body').animate({
-            scrollTop: target.offset().top - navHeight
-          }, 600);
-        }
-      });
-
-      // Highlight active nav link
-      $(window).on('scroll', function() {
-        var scrollPos = $(document).scrollTop();
-        $('#navbar ul li a').each(function() {
-          var currLink = $(this);
-          var refElement = $(currLink.attr("href"));
-          if(refElement.length) {
-            var sectionTop = refElement.offset().top - navHeight - 5;
-            var sectionBottom = sectionTop + refElement.outerHeight();
-            if(scrollPos >= sectionTop && scrollPos < sectionBottom) {
-              $('#navbar ul li a').removeClass("active");
-              currLink.addClass("active");
+        $('#navbar ul li a, .scrolly').on('click', function(e){
+            e.preventDefault();
+            var target = $($(this).attr('href'));
+            if(target.length){
+                $('html,body').animate({scrollTop: target.offset().top - navHeight},600);
             }
-          }
         });
-      });
 
-      // Trigger scroll on page load to set correct active link
-      $(window).trigger('scroll');
+        $(window).on('scroll', function(){
+            var scrollPos = $(document).scrollTop();
+            $('#navbar ul li a').each(function(){
+                var currLink = $(this);
+                var refElement = $(currLink.attr("href"));
+                if(refElement.length){
+                    var sectionTop = refElement.offset().top - navHeight -5;
+                    var sectionBottom = sectionTop + refElement.outerHeight();
+                    if(scrollPos >= sectionTop && scrollPos < sectionBottom){
+                        $('#navbar ul li a').removeClass("active");
+                        currLink.addClass("active");
+                    }
+                }
+            });
+        });
+
+        $(window).trigger('scroll');
     });
-  </script>
-	<script type="module">
-import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
+    </script>
 
-const lightbox = new PhotoSwipeLightbox({
-  gallery: '.projects-container',
-  children: 'a',
-  pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
-});
+    <!-- PhotoSwipe v5 -->
+    <script type="module">
+    import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
 
-lightbox.init();
-</script>
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '.projects-container',
+      children: 'a',
+      pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
+    });
+
+    lightbox.init();
+    </script>
 	</body>
 </html>
+
 
 
 
