@@ -195,7 +195,11 @@ h3 {
     flex-direction: column;
     gap: 15px;
   }
-}			
+}
+.lb-image {
+    touch-action: pinch-zoom; /* allows pinch-to-zoom */
+    -ms-touch-action: pinch-zoom; /* for older Microsoft browsers */
+}
 </style>
 </head>
 <body class="is-preload">
@@ -465,4 +469,5 @@ FILTER(ALL(superstoresales_clean), superstoresales_clean[Cohort] = MIN(superstor
   </script>
 	</body>
 </html>
+
 
