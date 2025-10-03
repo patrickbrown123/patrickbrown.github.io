@@ -156,9 +156,14 @@ h2 {
 h3 {
     text-transform: none; /* keeps the capitalization as in HTML */
 }
-/* Show/hide for mobile and desktop */
+/* Mobile/Desktop visibility */
 .mobile-only { display: none; }
 .desktop-only { display: block; }
+
+@media (max-width: 768px) {
+  .mobile-only { display: block; }
+  .desktop-only { display: none; }
+}
 			
 /* Projects Gallery */
 .projects-container {
@@ -305,20 +310,26 @@ ON s.CustomerID = c.CustomerID AND s.OrderDate = c.OrderDate;
 
               <div class="projects-container">
   <div class="project">
-    <img src="images/project1pbi-1.png" alt="Power BI KPI Cards"
-         data-pswp-width="1200" data-pswp-height="800">
+    <a href="images/project1pbi-1.png" data-pswp-width="1200" data-pswp-height="800" class="mobile-only">
+      <img src="images/project1pbi-1.png" alt="Power BI KPI Cards">
+    </a>
+    <img src="images/project1pbi-1.png" alt="Power BI KPI Cards" class="desktop-only">
     <figcaption><strong>Figure 1:</strong> KPI Cards – Total Sales, Profit, etc.</figcaption>
   </div>
 
   <div class="project">
-    <img src="images/project1pbi-2.png" alt="Sales breakdown by Category"
-         data-pswp-width="1200" data-pswp-height="800">
+    <a href="images/project1pbi-2.png" data-pswp-width="1200" data-pswp-height="800" class="mobile-only">
+      <img src="images/project1pbi-2.png" alt="Sales breakdown by Category">
+    </a>
+    <img src="images/project1pbi-2.png" alt="Sales breakdown by Category" class="desktop-only">
     <figcaption><strong>Figure 2:</strong> Sales by Category</figcaption>
   </div>
 
   <div class="project">
-    <img src="images/project1pbi-3.png" alt="Customer Retention"
-         data-pswp-width="1200" data-pswp-height="1600">
+    <a href="images/project1pbi-3.png" data-pswp-width="1200" data-pswp-height="1600" class="mobile-only">
+      <img src="images/project1pbi-3.png" alt="Customer Retention">
+    </a>
+    <img src="images/project1pbi-3.png" alt="Customer Retention" class="desktop-only">
     <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
   </div>
 </div>
@@ -456,14 +467,12 @@ import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-l
 
 function initLightbox() {
   // Remove existing lightbox if any
-  if (window.lightboxInstance) {
-    window.lightboxInstance.destroy();
-  }
+  if (window.lightboxInstance) window.lightboxInstance.destroy();
 
   if (window.innerWidth <= 768) { // Mobile only
     const lightbox = new PhotoSwipeLightbox({
       gallery: '.projects-container',
-      children: '.project img', // attach to images, not <a>
+      children: '.mobile-only', // only mobile <a>
       pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
     });
     lightbox.init();
@@ -477,6 +486,7 @@ window.addEventListener('resize', initLightbox);
 </script>
 	</body>
 </html>
+
 
 
 
