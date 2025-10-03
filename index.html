@@ -212,7 +212,10 @@ h3 {
 .projects-container p {
   margin-bottom: 12px; /* adjust for consistent spacing */
 }
-
+.projects-container > p {
+    text-align: left;
+    width: 100%; /* ensures left alignment inside flex container */
+}
 .projects-container figure {
   margin-top: 12px; /* same as above for consistency */
 }			
@@ -507,6 +510,7 @@ if (window.innerWidth <= 768) { // mobile only
 </script>
 	</body>
 </html>
+
 
 
 
