@@ -209,17 +209,20 @@ h3 {
     font-size: 0.9rem;
     color: #555;
 }
+/* Figure description (paragraphs) */
 .projects-container p {
-  margin-bottom: 12px; /* adjust for consistent spacing */
+    text-align: left;        /* align with main report text */
+    max-width: 1200px;       /* optional: match figure max-width */
+    margin: 0 auto 12px auto; /* 12px bottom spacing, centered block */
 }
-.projects-container > p {
-    text-align: left;  /* align with normal page text */
-    width: auto;       /* don’t stretch or center inside flex */
-    margin-left: 0;    /* optional: match page padding */
-}
+
+/* Individual figure */
 .projects-container figure {
-  margin-top: 12px; /* same as above for consistency */
-}			
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* center image and caption */
+    margin-top: 12px;      /* spacing above figure */
+}
 /* Optional hover scale on desktop */
 @media (min-width: 769px) {
   .projects-container .project img:hover {
@@ -511,6 +514,7 @@ if (window.innerWidth <= 768) { // mobile only
 </script>
 	</body>
 </html>
+
 
 
 
