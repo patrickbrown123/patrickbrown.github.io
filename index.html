@@ -156,54 +156,55 @@ h2 {
 h3 {
     text-transform: none; /* keeps the capitalization as in HTML */
 }
-/* By default, links are clickable */
-.project-link {
-  display: block;
+/* Smooth scrolling & navbar padding */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
 }
 
-/* Disable clicking on desktop */
-@media (min-width: 769px) {
-  .project-link {
-    pointer-events: none; /* disables click */
-  }
-}
-			
 /* Projects Gallery */
 .projects-container {
   display: flex;
-  flex-direction: column;      /* stack figures vertically */
-  gap: 20px;                   /* spacing between figures */
-  align-items: center;         /* center figures horizontally */
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
   width: 100%;
-  max-width: 900px;            /* match main content width */
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 15px;
 }
 
-/* Individual figure wrapper */
 .figure-wrapper {
   width: 100%;
   max-width: 900px;
   margin: 0 auto 20px;
 }
 
-/* Description above figure */
 .figure-description {
-  text-align: left;
-  margin: 0 0 8px 0;
   font-size: 1rem;
   line-height: 1.5;
+  margin: 0 0 8px 0;
 }
 
-/* Figure element */
+/* Center description on mobile, left-align on desktop */
+@media (min-width: 769px) {
+  .figure-description {
+    text-align: left;
+  }
+}
+@media (max-width: 768px) {
+  .figure-description {
+    text-align: center;
+  }
+}
+
 .projects-container figure {
   display: flex;
   flex-direction: column;
-  align-items: center;        /* center caption and image */
+  align-items: center;
   margin: 0;
 }
 
-/* Images inside figure */
 .projects-container img {
   width: 100%;
   height: auto;
@@ -216,14 +217,13 @@ h3 {
   transition: transform 0.3s;
 }
 
-/* Hover scale effect on desktop */
+/* Hover scale effect desktop only */
 @media (min-width: 769px) {
   .projects-container img:hover {
     transform: scale(1.02);
   }
 }
 
-/* Captions */
 .projects-container figcaption {
   margin-top: 4px;
   font-size: 0.9rem;
@@ -231,14 +231,16 @@ h3 {
   text-align: center;
 }
 
-    /*@media (max-width:768px) {
-        .projects-container { flex-direction:column; gap:15px; padding:0 10px;}
-        .projects-container a { flex:1 1 100%; max-width:100%;}
-        .projects-container img { width:100%; height:auto;}
-    }*/
+/* Links */
+.project-link {
+  display: block;
+}
 
-    html { scroll-behavior:smooth; scroll-padding-top:70px; }
-	
+@media (min-width: 769px) {
+  .project-link {
+    pointer-events: none; /* disables click on desktop */
+  }
+}
 </style>
 </head>
 <body class="is-preload">
@@ -529,6 +531,7 @@ if (window.innerWidth <= 768) { // mobile only
 </script>
 	</body>
 </html>
+
 
 
 
