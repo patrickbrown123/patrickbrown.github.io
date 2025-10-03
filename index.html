@@ -164,10 +164,11 @@ h3 {
 }
 
 .projects-container a {
-  flex: 1 1 300px; /* minimum width on mobile */
+  flex: 1 1 300px; 
   max-width: 600px;
-  text-align: center; /* centers captions */
+  text-align: center; 
   display: block;
+  cursor: zoom-in; /* indicates click-to-zoom */
 }
 
 .projects-container img {
@@ -190,10 +191,22 @@ h3 {
   color: #555;
 }
 
+/* Mobile adjustments: full width and padding */
 @media (max-width: 768px) {
   .projects-container {
     flex-direction: column;
     gap: 15px;
+    padding: 0 10px;
+  }
+
+  .projects-container a {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .projects-container img {
+    width: 100%;
+    height: auto;
   }
 }
 .lb-image {
@@ -309,17 +322,23 @@ ON s.CustomerID = c.CustomerID AND s.OrderDate = c.OrderDate;
 <strong>YoY (Year over Year):</strong> Comparison of the same period in the current year versus the previous year.</p>
 
 <div class="projects-container">
-  <a href="images/project1pbi-1.png" data-lightbox="project1" data-title="Figure 1: KPI Cards and Overall Trends – Total Sales, Total Profit, Profit Margin, Unique Customers and YoY Growth">
+  <a href="images/project1pbi-1.png" 
+     data-pswp-width="1200" 
+     data-pswp-height="800">
     <img src="images/project1pbi-1.png" alt="Power BI KPI Cards showing Total Sales, Total Profit, Profit Margin and YoY growth">
     <figcaption><strong>Figure 1:</strong> KPI Cards – Total Sales, Total Profit, Profit Margin, Unique Customers, YoY Growth</figcaption>
   </a>
 
-  <a href="images/project1pbi-2.png" data-lightbox="project2" data-title="Figure 2: Total Sales by Category, Subcategory, Region, Product, Customer Segment and Segment">
+  <a href="images/project1pbi-2.png" 
+     data-pswp-width="1200" 
+     data-pswp-height="800">
     <img src="images/project1pbi-2.png" alt="Power BI visuals showing sales breakdown by Category, Subcategory, Region, Product, Customer Segment and Segment">
     <figcaption><strong>Figure 2:</strong> Total Sales by Category, Subcategory, Region, Product, Customer Segment</figcaption>
   </a>
 
-  <a href="images/project1pbi-3.png" data-lightbox="project3" data-title="Figure 3: Customer Retention by Cohort">
+  <a href="images/project1pbi-3.png" 
+     data-pswp-width="1200" 
+     data-pswp-height="800">
     <img src="images/project1pbi-3.png" alt="Power BI retention matrix showing customer drop offs over time across segments">
     <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
   </a>
@@ -467,7 +486,19 @@ FILTER(ALL(superstoresales_clean), superstoresales_clean[Cohort] = MIN(superstor
       $(window).trigger('scroll');
     });
   </script>
+	<script type="module">
+import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
+
+const lightbox = new PhotoSwipeLightbox({
+  gallery: '.projects-container',
+  children: 'a',
+  pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
+});
+
+lightbox.init();
+</script>
 	</body>
 </html>
+
 
 
