@@ -4687,3 +4687,22 @@ input, select, textarea {
 		}
 
 	}
+
+	/* Center headings inside project articles */
+#main .post.featured h2,
+#main .post.featured h3 {
+    text-align: center;
+}
+
+/* Left-align paragraphs, lists, and preformatted code */
+#main .post.featured p,
+#main .post.featured ol,
+#main .post.featured ul,
+#main .post.featured pre {
+    text-align: left;
+}
+
+/* Optional: keep images centered */
+#main .post.featured span.image {
+    text-align: center;
+}
