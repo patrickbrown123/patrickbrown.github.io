@@ -200,15 +200,22 @@ h3 {
   border: 2px solid #ccc;
   box-sizing: border-box;   /* ensures border doesn’t break layout */
 }
-.projects-container .project {
-    margin: 4px 0;          /* 4px top & bottom around the figure */
-}
+/*.projects-container .project {
+    margin: 4px 0;           4px top & bottom around the figure 
+}*/
 
 .projects-container figcaption {
     margin-top: 4px;        /* space between image and caption */
     font-size: 0.9rem;
     color: #555;
 }
+.projects-container p {
+  margin-bottom: 12px; /* adjust for consistent spacing */
+}
+
+.projects-container figure {
+  margin-top: 12px; /* same as above for consistency */
+}			
 /* Optional hover scale on desktop */
 @media (min-width: 769px) {
   .projects-container .project img:hover {
@@ -500,6 +507,7 @@ if (window.innerWidth <= 768) { // mobile only
 </script>
 	</body>
 </html>
+
 
 
 
