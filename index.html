@@ -62,39 +62,46 @@ body {
 
 /* Footer Base */
 footer {
-  background-color: #111;
-  color: #fff;
+  background-color: #111;   /* dark background */
+  color: #fff;              
   padding: 40px 20px;
   font-family: Arial, sans-serif;
-  text-align: center;
+  text-align: center;       /* centers all headings and text */
 }
 
-/* Make container full width */
+/* Footer heading (Contact) */
+footer h3:first-of-type {
+  margin-bottom: 30px;
+  font-size: 1.5em;
+  color: #f39c12;           /* accent color */
+}
+
+/* Footer container */
 .footer-container {
   display: flex;
-  justify-content: center;   /* center the sections */
-  align-items: flex-start;   /* align section tops */
+  justify-content: center;  /* center the sections horizontally */
+  align-items: flex-start;
   gap: 80px;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 1200px;         /* optional for limiting container width */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Individual Section */
+/* Individual sections */
 .footer-section {
-  flex: 0 1 auto;            
-  text-align: center;         
+  flex: 0 1 auto;
+  text-align: center;
 }
 
-/* Section Titles */
+/* Section titles */
 .footer-section h3 {
   margin-bottom: 15px;
   font-size: 1.2em;
   color: #f39c12;
 }
 
-/* Icons inside sections */
+/* Icon lists */
 .footer-section .icons {
   display: flex;
   justify-content: center;
@@ -112,6 +119,33 @@ footer {
 
 .footer-section .icons li a:hover {
   color: #f39c12;
+}
+
+/* Copyright area */
+#copyright {
+  margin-top: 30px;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+  text-align: center;
+}
+
+#copyright ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#copyright a {
+  color: #f39c12;
+  text-decoration: none;
+}
+
+#copyright a:hover {
+  text-decoration: underline;
 }
 
 
@@ -552,6 +586,7 @@ import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-l
 </script>
 	</body>
 </html>
+
 
 
 
