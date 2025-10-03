@@ -468,10 +468,10 @@ FILTER(ALL(superstoresales_clean), superstoresales_clean[Cohort] = MIN(superstor
 <script type="module">
 import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
 
-if (window.innerWidth <= 768) {
+if (window.innerWidth <= 768) { // mobile only
   const lightbox = new PhotoSwipeLightbox({
     gallery: '.projects-container',
-    children: '.mobile-only', // only clickable images
+    children: 'a.project-link', // attach to your <a> elements
     pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
   });
   lightbox.init();
@@ -479,6 +479,7 @@ if (window.innerWidth <= 768) {
 </script>
 	</body>
 </html>
+
 
 
 
