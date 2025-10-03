@@ -157,35 +157,37 @@ h3 {
     text-transform: none; /* keeps the capitalization as in HTML */
 }
 /* Projects Gallery */
-    .projects-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-    }
-    .projects-container a {
-        flex: 1 1 300px; 
-        max-width: 600px;
-        text-align: center;
-        display: block;
-        cursor: zoom-in;
-    }
-    .projects-container img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: transform 0.3s;
-        display: block;
-        margin: 0 auto;
-    }
-    .projects-container img:hover { transform: scale(1.02);}
+.projects-container {
+  display: flex;
+  flex-direction: column; /* vertical stack */
+  gap: 20px;              /* spacing between images */
+  align-items: center;    /* center images horizontally */
+  padding: 0 10px;        /* optional padding on sides */
+}
+
+.projects-container a {
+  width: 100%;
+  max-width: 800px;       /* constrain large images on desktop */
+  text-align: center;
+  display: block;
+}
+
+.projects-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  display: block;
+  margin: 0 auto;
+}
+    /*.projects-container img:hover { transform: scale(1.02);}
     .projects-container figcaption { margin-top:8px; font-size:0.9rem; color:#555;}
     @media (max-width:768px) {
         .projects-container { flex-direction:column; gap:15px; padding:0 10px;}
         .projects-container a { flex:1 1 100%; max-width:100%;}
         .projects-container img { width:100%; height:auto;}
-    }
+    }*/
 
     html { scroll-behavior:smooth; scroll-padding-top:70px; }
 </style>
@@ -434,19 +436,21 @@ FILTER(ALL(superstoresales_clean), superstoresales_clean[Cohort] = MIN(superstor
     </script>
 
     <!-- PhotoSwipe v5 -->
-    <script type="module">
-    import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
+ <script type="module">
+import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.min.js';
 
-    const lightbox = new PhotoSwipeLightbox({
-      gallery: '.projects-container',
-      children: 'a',
-      pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
-    });
-
-    lightbox.init();
-    </script>
+if (window.innerWidth <= 768) { // Mobile only
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '.projects-container',
+    children: 'a',
+    pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.min.js')
+  });
+  lightbox.init();
+}
+</script>
 	</body>
 </html>
+
 
 
 
