@@ -208,20 +208,25 @@ h3 {
     margin-top: 4px;        /* space between image and caption */
     font-size: 0.9rem;
     color: #555;
+	text-align: center;
 }
-/* Figure description (paragraphs) */
-.projects-container p {
-    text-align: left;        /* align with main report text */
-    max-width: 1200px;       /* optional: match figure max-width */
-    margin: 0 auto 12px auto; /* 12px bottom spacing, centered block */
+.figure-wrapper {
+    max-width: 1200px;
+    margin: 0 auto 20px auto;  /* centers the wrapper but keeps text left-aligned */
 }
 
-/* Individual figure */
+.figure-description {
+    text-align: left;
+    margin: 0 0 8px 0;          /* consistent spacing above figure */
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
 .projects-container figure {
     display: flex;
     flex-direction: column;
-    align-items: center;   /* center image and caption */
-    margin-top: 12px;      /* spacing above figure */
+    align-items: center;        /* centers figure & caption */
+    margin: 0;                  /* remove extra spacing */
 }
 /* Optional hover scale on desktop */
 @media (min-width: 769px) {
@@ -343,33 +348,47 @@ ON s.CustomerID = c.CustomerID AND s.OrderDate = c.OrderDate;
 	<p><strong>YTD (Year to Date):</strong> Total accumulated from the start of the year to the selected date. <br> 
     <strong>YoY (Year over Year):</strong> Comparison of the same period in the current year versus the previous year.</p>
     
-	<div class="projects-container">
+<div class="projects-container">
+
   <!-- Figure 1 -->
-		<p><strong>Figure 1</strong> shows a high level overview of Total Sales, Total Profit, Profit Margin, Unique Customers and YoY growth.</p>
-  <figure class="project">
-    <a href="images/project1pbi-1.png" data-pswp-width="1200" data-pswp-height="800" class="project-link">
-      <img src="images/project1pbi-1.png" alt="Power BI KPI Cards">
-    </a>
-    <figcaption><strong>Figure 1:</strong> KPI Cards and Overall Trends – Total Sales, Total Profit, Profit Margin, Unique Customers and YoY Growth</figcaption>
-  </figure>
+  <div class="figure-wrapper">
+    <p class="figure-description">
+      <strong>Figure 1</strong> shows a high level overview of Total Sales, Total Profit, Profit Margin, Unique Customers and YoY growth.
+    </p>
+    <figure class="project">
+      <a href="images/project1pbi-1.png" data-pswp-width="1200" data-pswp-height="800" class="project-link">
+        <img src="images/project1pbi-1.png" alt="Power BI KPI Cards">
+      </a>
+      <figcaption><strong>Figure 1:</strong> KPI Cards and Overall Trends – Total Sales, Total Profit, Profit Margin, Unique Customers and YoY Growth</figcaption>
+    </figure>
+  </div>
 
   <!-- Figure 2 -->
-		<p><strong>Figure 2</strong> shows Total Sales by Category, with Subcategory accessible via drill down, as well as by Region, Product, Customer Segment and Segment, highlighting trends and key areas of focus.</p>
-  <figure class="project">
-    <a href="images/project1pbi-2.png" data-pswp-width="1200" data-pswp-height="800" class="project-link">
-      <img src="images/project1pbi-2.png" alt="Sales breakdown by Category">
-    </a>
-    <figcaption><strong>Figure 2:</strong> Total Sales by Category (Subcategory available via drill down), Region, Product, Customer Segment and Segment.</figcaption>
-  </figure>
+  <div class="figure-wrapper">
+    <p class="figure-description">
+      <strong>Figure 2</strong> shows Total Sales by Category, with Subcategory accessible via drill down, as well as by Region, Product, Customer Segment and Segment, highlighting trends and key areas of focus.
+    </p>
+    <figure class="project">
+      <a href="images/project1pbi-2.png" data-pswp-width="1200" data-pswp-height="800" class="project-link">
+        <img src="images/project1pbi-2.png" alt="Sales breakdown by Category">
+      </a>
+      <figcaption><strong>Figure 2:</strong> Total Sales by Category (Subcategory available via drill down), Region, Product, Customer Segment and Segment.</figcaption>
+    </figure>
+  </div>
 
   <!-- Figure 3 -->
-		<p><strong>Figure 3</strong> shows customer retention over time, showing drop offs and trends across customer cohorts.</p>
-  <figure class="project">
-    <a href="images/project1pbi-3.png" data-pswp-width="1200" data-pswp-height="800" class="project-link">
-      <img src="images/project1pbi-3.png" alt="Customer Retention">
-    </a>
-    <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
-  </figure>
+  <div class="figure-wrapper">
+    <p class="figure-description">
+      <strong>Figure 3</strong> shows customer retention over time, showing drop offs and trends across customer cohorts.
+    </p>
+    <figure class="project">
+      <a href="images/project1pbi-3.png" data-pswp-width="1200" data-pswp-height="800" class="project-link">
+        <img src="images/project1pbi-3.png" alt="Customer Retention">
+      </a>
+      <figcaption><strong>Figure 3:</strong> Customer Retention by Cohort</figcaption>
+    </figure>
+  </div>
+
 </div>
 
   <!-- DAX / Analysis Methodology -->
@@ -514,6 +533,7 @@ if (window.innerWidth <= 768) { // mobile only
 </script>
 	</body>
 </html>
+
 
 
 
