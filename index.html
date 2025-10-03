@@ -197,6 +197,8 @@ h3 {
   transition: transform 0.3s;
   display: block;
   margin: 0 auto;
+  border: 2px solid #ccc;
+  box-sizing: border-box;   /* ensures border doesn’t break layout */
 }
 /* Optional hover scale on desktop */
 @media (min-width: 769px) {
@@ -213,11 +215,11 @@ h3 {
     }*/
 
     html { scroll-behavior:smooth; scroll-padding-top:70px; }
-.projects-container .project img {
-    border: 2px solid #ccc;  /* uniform border all around */
-    border-radius: 8px;       /* optional: match your style */
-    box-sizing: border-box;   /* ensures border doesn't increase image size */
-}		
+/*.projects-container .project img {
+    border: 2px solid #ccc;   uniform border all around 
+    border-radius: 8px;        optional: match your style 
+    box-sizing: border-box;   /* ensures border doesn't increase image size
+}*/		
 </style>
 </head>
 <body class="is-preload">
@@ -494,6 +496,7 @@ if (window.innerWidth <= 768) { // mobile only
 </script>
 	</body>
 </html>
+
 
 
 
