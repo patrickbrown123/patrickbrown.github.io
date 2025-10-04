@@ -117,22 +117,25 @@ body {
 }
 
 /* Copyright area */
-
 #copyright {
     display: flex;
-    flex-direction: column;  /* stack lines vertically */
-    align-items: center;     /* horizontally center both lines */
-    gap: 5px;                /* space between copyright and design */
-    margin-top: 30px;        /* space from the footer content above */
+    flex-direction: column;   /* stack vertically */
+    justify-content: center;  /* center vertically */
+    align-items: center;      /* center horizontally */
+    gap: 5px;                 /* small space between items */
+    margin-top: 30px;
     padding-top: 15px;
     border-top: 1px solid #333;
     text-align: center;
 }
 
 #copyright ul {
+    display: flex;
+    flex-direction: column;   /* stack items vertically */
     list-style: none;
     padding: 0;
     margin: 0;
+    gap: 5px;                 /* spacing between list items */
 }
 
 #copyright a {
@@ -611,6 +614,7 @@ import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-l
 </script>
 	</body>
 </html>
+
 
 
 
