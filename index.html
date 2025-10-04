@@ -127,13 +127,15 @@ body {
 #copyright ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;       /* center the container */
   display: flex;
-  justify-content: center;
-  /*gap: 20px;*/
-  flex-wrap: wrap;
-  flex-direction: column;  /* stack items vertically */
-  gap: 5px; 
+  flex-direction: column;  /* stack vertically */
+  align-items: center;      /* center items horizontally */
+  gap: 5px;                 /* spacing between lines */
+}
+
+#copyright li {
+  margin: 0;               /* remove default list spacing */
 }
 
 #copyright a {
@@ -612,6 +614,7 @@ import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-l
 </script>
 	</body>
 </html>
+
 
 
 
